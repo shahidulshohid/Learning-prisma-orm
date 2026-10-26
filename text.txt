@@ -1,0 +1,20 @@
+
+
+All command ======================================= =All command
+documentation: https://www.prisma.io/docs/v7/prisma-orm/quickstart/postgresql
+
+npm init -y
+
+npm install -D typescript tsx @types/node
+
+npx tsc --init
+
+npm i prisma @types/node @types/pg --save-dev
+
+npm i @prisma/client @prisma/adapter-pg pg dotenv
+
+npx prisma
+
+npx prisma init --datasource-provider postgresql --output ../generated/prisma
+
+ 
