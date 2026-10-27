@@ -3,6 +3,8 @@
 All command ======================================= =All command
 documentation: https://www.prisma.io/docs/v7/prisma-orm/quickstart/postgresql
 model:========== https://www.prisma.io/docs/orm/v7/prisma-schema/data-model/models
+eraser ===== https://app.eraser.io/workspace/n1ZW1cd1Dz9fY9gLGVBA
+diagram ===== https://app.diagrams.net/#G1QGBIfr5aeDjEdIcqNmpF4Axg_X162bqe#%7B%22pageId%22%3A%22E3K4-amy6B03Wo2W_ssw%22%7D
 
 npm init -y
 
