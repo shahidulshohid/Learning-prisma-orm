@@ -1,0 +1,18 @@
+
+import app from "../app";
+import { prisma } from "./prisma"
+const PORT = process.env.PORT || 5000;
+
+async function main() {
+    try {
+        await prisma.$connect();
+        console.log("Connected to the database successfully.")
+        app.listen(PORT, () => {
+            console.log(`server is running on http://localhost:${PORT}`)
+        })
+    } catch (error) {
+        console.log("An error occurred", error)
+        process.exit(1)
+    }
+}
+main()
