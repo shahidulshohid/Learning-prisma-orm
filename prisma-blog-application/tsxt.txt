@@ -1,0 +1,6 @@
+
+1. whithout out watch mode
+npx tsx src/server.ts
+
+2. with watch mode
+npx tsx watch src/server.ts
