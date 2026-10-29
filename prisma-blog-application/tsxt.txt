@@ -4,3 +4,6 @@ npx tsx src/server.ts
 
 2. with watch mode
 npx tsx watch src/server.ts
+
+3. this command for update schema.prisma file
+ npx @better-auth/cli generate -y
