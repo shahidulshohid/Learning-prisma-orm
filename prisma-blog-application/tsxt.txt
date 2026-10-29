@@ -7,3 +7,10 @@ npx tsx watch src/server.ts
 
 3. this command for update schema.prisma file
  npx @better-auth/cli generate -y
+ npx prisma migrate dev
+
+4. npx prisma migrate dev --name add_better_auth
+    npx prisma generate
+
+5. for run the prisma studio
+   npx prisma studio
