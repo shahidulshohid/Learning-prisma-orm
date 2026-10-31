@@ -44,15 +44,19 @@ export const auth = betterAuth({
         autoSignIn: false,
         requireEmailVerification: true
     },
+    // email and pasword 
     emailVerification: {
+        sendOnSignUp: true,
+        autoSignInAfterVerification: true,
         sendVerificationEmail: async ({ user, url, token }, request) => {
-            const verificationUrl = `${process.env.APP_URL}/verify-email?token=${token}`;
+            try {
+                const verificationUrl = `${process.env.APP_URL}/verify-email?token=${token}`;
 
-            const info = await transporter.sendMail({
-                from: `"Prisma App" <${process.env.SMTP_USER}>`,
-                to: user.email,
-                subject: "Please verify your email",
-                html: `
+                const info = await transporter.sendMail({
+                    from: `"Prisma App" <${process.env.SMTP_USER}>`,
+                    to: user.email,
+                    subject: "Please verify your email",
+                    html: `
                 <!DOCTYPE html>
                 <html lang="en">
                 <head>
@@ -124,9 +128,23 @@ export const auth = betterAuth({
                 </body>
                 </html>
                                 `,
-            });
+                });
 
-            console.log("Verification email sent:", info.messageId);
+                console.log("Verification email sent:", info.messageId); 
+            } catch (error) {
+                console.log(error)
+                throw error
+            }
         },
+    },
+
+    // google login 
+    socialProviders: {
+        prompt: "select_account consent",
+        accessType: onoffline,
+        google: { 
+            clientId: process.env.GOOGLE_CLIENT_ID as string, 
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string, 
+        }, 
     },
 });
