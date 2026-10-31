@@ -14,3 +14,6 @@ npx tsx watch src/server.ts
 
 5. for run the prisma studio
    npx prisma studio
+
+6. have to add in auth file
+smtp.gmail.com   
