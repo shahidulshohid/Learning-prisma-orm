@@ -19,7 +19,7 @@ export const auth = betterAuth({
         provider: "postgresql", // or "mysql", "sqlite", ...etc
     }),
     trustedOrigins: [
-        process.env.APP_URL!
+        (process.env.APP_URL || "http://localhost:3000").trim()
     ],
     user: {
         additionalFields: {
@@ -50,7 +50,8 @@ export const auth = betterAuth({
         autoSignInAfterVerification: true,
         sendVerificationEmail: async ({ user, url, token }, request) => {
             try {
-                const verificationUrl = `${process.env.APP_URL}/verify-email?token=${token}`;
+                const appUrl = (process.env.APP_URL || "http://localhost:3000").trim().replace(/\/$/, "");
+                const verificationUrl = `${appUrl}/verify-email?token=${token}`;
 
                 const info = await transporter.sendMail({
                     from: `"Prisma App" <${process.env.SMTP_USER}>`,
@@ -130,7 +131,7 @@ export const auth = betterAuth({
                                 `,
                 });
 
-                console.log("Verification email sent:", info.messageId); 
+                console.log("Verification email sent:", info.messageId);
             } catch (error) {
                 console.log(error)
                 throw error
@@ -140,11 +141,11 @@ export const auth = betterAuth({
 
     // google login 
     socialProviders: {
-        prompt: "select_account consent",
-        accessType: onoffline,
-        google: { 
-            clientId: process.env.GOOGLE_CLIENT_ID as string, 
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string, 
-        }, 
+        google: {
+            clientId: process.env.GOOGLE_CLIENT_ID as string,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+            prompt: "select_account consent",
+            accessType: "offline",
+        },
     },
 });
